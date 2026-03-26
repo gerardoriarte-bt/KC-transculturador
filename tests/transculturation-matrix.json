@@ -1,0 +1,116 @@
+{
+  "description": "Matriz de validacion linguistica por marca y pais para el motor de transculturacion KC.",
+  "version": "1.0.0",
+  "cases": [
+    {
+      "id": "kotex-ar-voseo-01",
+      "brand": "Kotex",
+      "country": "Argentina",
+      "input": "Tu puedes vivir esos dias con discrecion y que nadie lo note.",
+      "expect": {
+        "must_include_one_of": ["vos", "podés", "sentite", "elegi", "flujo", "periodo", "menstruacion"],
+        "must_not_include": ["tu puedes", "esos dias", "discrecion", "que nadie lo note", "esa epoca del mes"],
+        "treatment": "voseo"
+      }
+    },
+    {
+      "id": "kotex-mx-tuteo-01",
+      "brand": "Kotex",
+      "country": "México",
+      "input": "Esos dias pueden ser incomodos, pero con Kotex nadie lo nota.",
+      "expect": {
+        "must_include_one_of": ["tu", "flujo", "periodo", "menstruacion", "sentirte segura"],
+        "must_not_include": ["vos", "podés", "veni", "esos dias", "nadie lo nota"],
+        "treatment": "tuteo"
+      }
+    },
+    {
+      "id": "kotex-cl-claridad-01",
+      "brand": "Kotex",
+      "country": "Chile",
+      "input": "En esa epoca del mes necesitas discrecion total.",
+      "expect": {
+        "must_include_one_of": ["periodo", "flujo", "confianza", "acompanar"],
+        "must_not_include": ["esa epoca del mes", "discrecion", "voseo"],
+        "treatment": "tuteo"
+      }
+    },
+    {
+      "id": "kotex-co-calido-01",
+      "brand": "Kotex",
+      "country": "Colombia",
+      "input": "Con esto nadie va a notar manchas en esos dias.",
+      "expect": {
+        "must_include_one_of": ["tu", "flujo", "ciclo", "tranquila"],
+        "must_not_include": ["manchas", "esos dias", "voseo"],
+        "treatment": "tuteo"
+      }
+    },
+    {
+      "id": "kotex-hn-simple-01",
+      "brand": "Kotex",
+      "country": "Honduras",
+      "input": "Esos dias son un problema del que no se habla.",
+      "expect": {
+        "must_include_one_of": ["tu", "periodo", "cuidado", "proteccion"],
+        "must_not_include": ["esos dias", "discrecion", "voseo"],
+        "treatment": "tuteo"
+      }
+    },
+    {
+      "id": "huggies-ar-voseo-01",
+      "brand": "Huggies",
+      "country": "Argentina",
+      "input": "Tu debes ser una madre perfecta y no cometer errores.",
+      "expect": {
+        "must_include_one_of": ["vos", "acompanarte", "cada etapa", "cuidado", "confianza"],
+        "must_not_include": ["madre perfecta", "padre perfecto", "sin errores", "tu debes"],
+        "treatment": "voseo"
+      }
+    },
+    {
+      "id": "plenitud-cr-neutral-01",
+      "brand": "Plenitud",
+      "country": "Costa Rica",
+      "input": "No dejes que esto te limite ni te haga sentir incapaz.",
+      "expect": {
+        "must_include_one_of": ["autonomia", "bienestar", "seguridad", "vida activa", "confianza"],
+        "must_not_include": ["incapaz", "limite", "debil"],
+        "treatment": "tuteo"
+      }
+    },
+    {
+      "id": "depend-ec-confianza-01",
+      "brand": "Depend",
+      "country": "Ecuador",
+      "input": "Esto evita el fracaso cuando te sientes debil.",
+      "expect": {
+        "must_include_one_of": ["independencia", "confianza", "control", "proteccion"],
+        "must_not_include": ["fracaso", "debil", "limite"],
+        "treatment": "tuteo"
+      }
+    },
+    {
+      "id": "kotex-bo-local-01",
+      "brand": "Kotex",
+      "country": "Bolivia",
+      "input": "En esos dias preferi discrecion y que nadie lo note.",
+      "expect": {
+        "must_include_one_of": ["tu", "periodo", "flujo", "menstruacion"],
+        "must_not_include": ["esos dias", "discrecion", "que nadie lo note", "podés", "sentite"],
+        "treatment": "tuteo"
+      }
+    },
+    {
+      "id": "kotex-gt-inclusion-01",
+      "brand": "Kotex",
+      "country": "Guatemala",
+      "input": "Esos dias son normales para una mujer: discrecion y listo.",
+      "expect": {
+        "must_include_one_of": ["tu", "periodo", "flujo", "menstruacion", "comunidad"],
+        "must_not_include": ["esos dias", "discrecion", "normal para una mujer", "voseo"],
+        "treatment": "tuteo"
+      }
+    }
+  ]
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KC Transculturador Pro | Zuentipo</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_old.css">
     <link rel="icon" href="https://www.kimberly-clark.com/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -50,14 +50,35 @@
                     <div class="control-group">
                         <label>Mercado Objetivo</label>
                         <select id="country-select">
-                            <option value="Argentina">Argentina</option>
-                            <option value="Chile">Chile</option>
-                            <option value="Colombia">Colombia</option>
-                            <option value="Costa Rica">Costa Rica</option>
-                            <option value="Ecuador">Ecuador</option>
-                            <option value="Honduras">Honduras</option>
-                            <option value="México">México</option>
-                            <option value="Perú">Perú</option>
+                            <optgroup label="Cono Sur">
+                                <option value="Argentina">Argentina</option>
+                                <option value="Chile">Chile</option>
+                            </optgroup>
+                            <optgroup label="México">
+                                <option value="México">México</option>
+                            </optgroup>
+                            <optgroup label="Andino / Pacífico">
+                                <option value="Bolivia">Bolivia</option>
+                                <option value="Colombia">Colombia</option>
+                                <option value="Ecuador">Ecuador</option>
+                                <option value="Perú">Perú</option>
+                            </optgroup>
+                            <optgroup label="Caribe">
+                                <option value="Puerto Rico">Puerto Rico</option>
+                                <option value="Rep. Dominicana">Rep. Dominicana</option>
+                                <option value="Caribe">Caribe (U by Kotex)</option>
+                            </optgroup>
+                            <optgroup label="Centroamérica">
+                                <option value="Centroamérica">Centroamérica (hub regional)</option>
+                                <option value="Costa Rica">Costa Rica</option>
+                                <option value="El Salvador">El Salvador</option>
+                                <option value="Guatemala">Guatemala</option>
+                                <option value="Honduras">Honduras</option>
+                                <option value="Nicaragua">Nicaragua</option>
+                            </optgroup>
+                            <optgroup label="Regional">
+                                <option value="LATAM Regional">LATAM Regional (hub TikTok)</option>
+                            </optgroup>
                         </select>
                     </div>
                 </div>
@@ -71,7 +92,7 @@
 
                 <div class="sidebar-footer">
                     <p>Powered by <strong>LoBueno</strong></p>
-                    <span class="version-tag">v2.1.0-pro</span>
+                    <span class="version-tag">v3.0-latam</span>
                 </div>
             </aside>
 
@@ -125,6 +146,33 @@
                                         <!-- Se llenará dinámicamente -->
                                     </ul>
                                 </div>
+                                <div id="feedback-panel" class="feedback-panel" style="display: none;" aria-live="polite">
+                                    <p class="feedback-panel__title">¿Te sirvió este resultado?</p>
+                                    <div class="feedback-panel__actions">
+                                        <button type="button" id="feedback-btn-up" class="feedback-chip feedback-chip--up" title="Sí, útil">
+                                            <i class="fas fa-thumbs-up"></i> Sí
+                                        </button>
+                                        <button type="button" id="feedback-btn-down" class="feedback-chip feedback-chip--down" title="No del todo">
+                                            <i class="fas fa-thumbs-down"></i> No
+                                        </button>
+                                    </div>
+                                    <div id="feedback-extra" class="feedback-panel__extra" style="display: none;">
+                                        <label class="feedback-panel__label" for="feedback-reason">Motivo</label>
+                                        <select id="feedback-reason" class="feedback-panel__select">
+                                            <option value="">Selecciona…</option>
+                                            <option value="imported_tone">Suena importado / poco local</option>
+                                            <option value="wrong_treatment">Mal voseo / tuteo</option>
+                                            <option value="brand_mismatch">No respeta voz de marca</option>
+                                            <option value="too_literal">Demasiado literal o cambió el mensaje</option>
+                                            <option value="other">Otro</option>
+                                        </select>
+                                        <label class="feedback-panel__label" for="feedback-comment">Comentario (opcional)</label>
+                                        <textarea id="feedback-comment" class="feedback-panel__textarea" maxlength="2000" rows="2" placeholder="Ej.: faltaría un tono más…"></textarea>
+                                        <button type="button" id="feedback-submit" class="feedback-panel__submit">Enviar feedback</button>
+                                    </div>
+                                    <p id="feedback-status" class="feedback-panel__status" style="display: none;"></p>
+                                    <p id="request-id-line" class="feedback-panel__meta" style="display: none;"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -177,6 +225,6 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="../app.js"></script>
 </body>
 </html>

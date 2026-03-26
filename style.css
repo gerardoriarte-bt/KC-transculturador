@@ -407,6 +407,132 @@ textarea {
   border-radius: 4px;
 }
 
+/* Feedback humano */
+.feedback-panel {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #E5E7EB;
+}
+
+.feedback-panel__title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-active);
+  margin-bottom: 0.75rem;
+}
+
+.feedback-panel__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.feedback-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #E5E7EB;
+  background: #FAFAFA;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.feedback-chip:hover:not(:disabled) {
+  background: #F3F4F6;
+  border-color: #D1D5DB;
+  color: var(--text-active);
+}
+
+.feedback-chip:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.feedback-chip--up.feedback-chip--active {
+  background: #ECFDF5;
+  border-color: #6EE7B7;
+  color: #047857;
+}
+
+.feedback-chip--down.feedback-chip--active {
+  background: #FEF2F2;
+  border-color: #FCA5A5;
+  color: #B91C1C;
+}
+
+.feedback-panel__extra {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feedback-panel__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.feedback-panel__select,
+.feedback-panel__textarea {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  font-size: 0.85rem;
+  font-family: inherit;
+  background: #fff;
+}
+
+.feedback-panel__textarea {
+  resize: vertical;
+  min-height: 3rem;
+}
+
+.feedback-panel__submit {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--kc-blue);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.feedback-panel__submit:hover:not(:disabled) {
+  background: #0000d3;
+}
+
+.feedback-panel__submit:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.feedback-panel__status {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #047857;
+  font-weight: 600;
+}
+
+.feedback-panel__meta {
+  margin-top: 0.35rem;
+  font-size: 0.65rem;
+  color: #9CA3AF;
+  font-family: ui-monospace, monospace;
+  word-break: break-all;
+}
+
 @media (max-width: 1000px) {
   .workspace { grid-template-columns: 1fr; }
   .knowledge-grid { grid-template-columns: 1fr; }

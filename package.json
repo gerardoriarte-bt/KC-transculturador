@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node local-dev-server.js",
+    "start": "node local-dev-server.js",
+    "test": "node tests/validate-transculturation.js",
+    "test:matrix": "node tests/validate-transculturation.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.6.1",
     "openai": "^6.33.0"
   }
 }
