@@ -1,4 +1,4 @@
-// MOTOR DE TRANSCULTURACIÓN KC v2.1 - Implementación Real con OpenAI (API Gateway)
+// MOTOR DE TRANSCULTURACIÓN KC v2.1.1 - Debugging & CORS Ready
 
 const KB = {
   "brands": {
@@ -39,17 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusTag = document.getElementById('status-tag');
     const spinner = document.getElementById('spinner');
 
-    // Navegación
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const target = btn.getAttribute('data-tab');
-            tabBtns.forEach(b => b.classList.remove('active'));
-            workspaces.forEach(w => w.style.display = 'none');
-            btn.classList.add('active');
-            document.getElementById(target).style.display = 'grid';
-        });
-    });
-
     const updateContext = () => {
         const brand = brandSelect.value;
         const country = countrySelect.value;
@@ -57,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (brandData) {
             const data = brandData.countries[country];
             ragContext.innerHTML = `
-                <div style="font-weight: 800; font-size: 0.85rem; color: #0000a3; margin-bottom: 5px;">KC AI AI Engine - ${brand}</div>
+                <div style="font-weight: 800; font-size: 0.85rem; color: #0000a3; margin-bottom: 5px;">KC AI Engine v2.1.1</div>
                 <div style="font-size: 0.75rem; line-height: 1.4; color: #555;">
                     <strong>DNA:</strong> ${brandData.global_dna}<br>
                     <strong>Mercado:</strong> ${country} (Tier ${data ? data.tier : 'N/A'})
@@ -69,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     countrySelect.addEventListener('change', updateContext);
     updateContext();
 
-    // MOTOR DE TRANSCULTURACIÓN v2.1 (OPENAI INTEGRATION)
+    // MOTOR DE TRANSCULTURACIÓN v2.1.1 (FETCH LOGIC)
     transformBtn.addEventListener('click', async () => {
         const copy = inputCopy.value.trim();
         if (!copy) return;
@@ -82,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         transformBtn.disabled = true;
         spinner.style.display = 'block';
         reasoningArea.style.display = 'none';
-        statusTag.innerText = "Llamando a OpenAI (v2.1)...";
+        statusTag.innerText = "Llamando a OpenAI (v2.1.1)...";
 
         const payload = {
             copy: copy,
@@ -102,9 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(payload)
             });
 
-            if (!response.ok) throw new Error("API Connection Error");
-
             const data = await response.json();
+
+            if (!response.ok) {
+                const errMsg = data.details || data.error || "Unknown error";
+                throw new Error(`${errMsg} (API Key detectada: ${data.apiKeyFound ? 'SÍ' : 'NO'})`);
+            }
 
             // Desplegar Resultados
             resultText.innerText = data.adaptation;
@@ -127,16 +119,27 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             reasoningArea.style.display = 'block';
-            statusTag.innerText = "Transculturación con GPT-4o Exitosa";
+            statusTag.innerText = "Transculturación Real Completada";
         } catch (error) {
             console.error(error);
-            resultText.innerText = "Error al conectar con la IA de LoBueno. Verifica tu conexión o configuración de API en Vercel.";
-            statusTag.innerText = "Error de Conexión";
+            resultText.innerText = `ERROR ESTRATÉGICO: ${error.message}`;
+            statusTag.innerText = "Error en el Motor";
         } finally {
             spinner.style.display = 'none';
             transformBtn.disabled = false;
             document.getElementById('result-container').style.display = 'block';
             document.getElementById('placeholder').style.display = 'none';
         }
+    });
+
+    // Pestañas
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-tab');
+            tabBtns.forEach(b => b.classList.remove('active'));
+            workspaces.forEach(w => w.style.display = 'none');
+            btn.classList.add('active');
+            document.getElementById(target).style.display = 'grid';
+        });
     });
 });

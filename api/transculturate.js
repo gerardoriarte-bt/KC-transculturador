@@ -4,7 +4,16 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
+    // Enable CORS for preflight (OPTIONS)
+    if (req.method === 'OPTIONS') {
+        res.setHeader('Access-Control-Allow-Credentials', true);
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+        res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+        return res.status(200).end();
+    }
+
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
@@ -70,6 +79,10 @@ Devuelve un JSON estrictamente con la siguiente estructura:
         return res.status(200).json(result);
     } catch (error) {
         console.error("OpenAI Error:", error);
-        return res.status(500).json({ error: "Error en la transculturación con IA." });
+        return res.status(500).json({ 
+            error: "Error en la transculturación con IA.", 
+            details: error.message,
+            apiKeyFound: !!process.env.OPENAI_API_KEY
+        });
     }
 }
